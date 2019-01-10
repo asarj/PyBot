@@ -1,9 +1,10 @@
 import wikipedia
 import wolframalpha
 import wx
-
+# from espeakng import ESpeakNG as espeak
 app_id = "JEREAK-7XJ4VHGV5Q"
 query = ""
+
 class MyFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self,
@@ -40,8 +41,11 @@ def analyze_input(input):
         except:
             #wikipedia
             wikipedia.set_lang("en")
+            answer = answer.split(' ')
+            answer = " ".join(input[2:])
             answer = wikipedia.summary(input, sentences = 2)
         print(answer)
+        # espeak.synth_wav("The answer is " + answer)
 
 if __name__ == "__main__":
     app = wx.App(True)
